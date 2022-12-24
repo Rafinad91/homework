@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: "install figlet"
+      apt:
+        name: "figlet"
+        state: "latest"
+        update_cache: true
+    - name: MOTD file 
+      template:
+        src: /home/motd.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: 0644   
+    - name: MOTD file 
+      template:
+        src: /home/motd.sh
+        dest: /etc/profile.d/
+        owner: root
+        group: root
+        mode: 0644
+...
