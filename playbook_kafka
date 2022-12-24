@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: "Apache Kafka"
+    get_url:
+      url: 'https://downloads.apache.org/kafka/3.3.1/kafka-3.3.1-src.tgz'
+      dest: /home/
+  - name: "Make dir"
+    file: 
+      path: /home/kafka/
+      state: directory
+  - name: "Ecstarck arhive"
+    unarchive:
+      src: /home/kafka-3.3.1-src.tgz
+      dest: /home/kafka/
+      extra_opts: [--strip-components=1]
+      remote_src: yes
+...
