@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: "install tuned"
+    apt:
+      name: "tuned"
+      state: "latest"
+      update_cache: true
+  - name: "start tuned"
+    service:
+      name: tuned
+      state: started
+      enabled: yes
+...
